@@ -1,1 +1,16 @@
-/*   /index.html  200
+[build]
+    base    = ""
+    publish = "build"
+    command = "CI=false npm run build"
+
+# The following redirect is intended for use with most SPAs that handle
+# routing internally.
+[[redirects]]
+    from = "/"
+    to = "/index.html"
+    status = 200
+
+[[redirects]]
+    from = "/list"
+    to = "/list.js"
+    status = 200
