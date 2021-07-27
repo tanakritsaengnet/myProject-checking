@@ -12,5 +12,5 @@
 
 [[redirects]]
     from = "/list"
-    to = "/list.js"
+    to = "/index.html/list"
     status = 200
