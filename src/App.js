@@ -9,6 +9,7 @@ import List from "./Components/List/List";
 import AddUser from "./Components/AddUser/AddUser";
 import Checking from "./Components/HistoryChecking/Checking";
 import Leave from "./Components/Leave/Leave";
+import EditUser from "./Components/EditUser/EditUser";
 
 function App() {
   const { user, setUser, clearUser } = useUser();
@@ -56,6 +57,9 @@ function App() {
               </Route>
               <Route exact path="/Leave">
                 <Leave />
+              </Route>
+              <Route exact path="/EditUser/:id">
+                <EditUser />
               </Route>
               <Route path="/*">
                 <List />

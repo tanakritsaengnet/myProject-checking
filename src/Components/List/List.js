@@ -5,6 +5,9 @@ import styles from "./List.module.scss";
 import MaterialTable from "material-table";
 import icon from "./image/iconfinder.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { useHistory } from "react-router-dom";
 
 async function selectUser() {
   return firebase.database().ref("user");
@@ -13,6 +16,7 @@ async function selectUser() {
 function List() {
 
   const [items, setItems] = useState([]);
+  const history = useHistory();
 
   const listData = async () => {
     const itemsRef = await selectUser();
@@ -46,6 +50,33 @@ function List() {
     listData()
   }, [])
 
+  const doDelete = (userId) => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui'>
+            <h1>Are you sure?</h1>
+            <p>You want to delete this user?</p>
+            <button onClick={onClose}>No</button>
+            <button
+              onClick={() => {
+                firebase.database().ref('user/' + userId).remove();
+                alert('Delete User ID: ' + userId + " from user complete");
+                onClose();
+              }}
+            >
+              Yes, Delete it!
+            </button>
+          </div>
+        );
+      }
+    });
+  }
+
+  const doEdit = (rowData) => {
+    history.push("/EditUser/" + rowData.user_id);
+  }
+
   return (
     <div className={styles.body}>
       <h1>รายชื่อพนักงาน</h1>
@@ -65,6 +96,7 @@ function List() {
             backgroundColor: "#555555",
             color: "#FFF",
           },
+          actionsColumnIndex: -1
         }}
         columns={[
           {
@@ -82,6 +114,18 @@ function List() {
           { width: 10, title: "ตำแหน่ง  ", field: "position" },
         ]}
         data={items}
+        actions={[
+          {
+            icon: 'edit',
+            tooltip: 'Edit User',
+            onClick: (event, rowData) => doEdit(rowData)
+          },
+          {
+            icon: 'delete',
+            tooltip: 'Delete User',
+            onClick: (event, rowData) => doDelete(rowData.user_id)
+          }
+        ]}
       />
     </div>
   );
