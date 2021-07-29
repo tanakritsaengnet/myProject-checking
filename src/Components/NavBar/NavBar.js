@@ -6,7 +6,7 @@ import "./NavBar.css";
 import firebase from "../../Firebase";
 import { IconContext } from "react-icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import icon from "../List/image/iconfinder.png";
 
 function NavBar({ user, clearUser }) {
   const [sidebar, setSidebar] = useState(false);
@@ -20,6 +20,13 @@ function NavBar({ user, clearUser }) {
     });
   }
 
+  const getPhoto = () => {
+    if (user.photo == null || user.photo == '') {
+      return icon;
+    } else {
+      return user.photo;
+    }
+  }
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
@@ -33,7 +40,8 @@ function NavBar({ user, clearUser }) {
             <label>CHECKING</label>
           </div>
           <div className="navbar-nav ml-auto nav-user">
-            ยินดีต้อนรับ {user.name} {user.surname}
+            <span>
+              ยินดีต้อนรับ <img src={getPhoto()} alt="Avatar" width="40" height="40" /> {user.name} {user.surname}</span>
           </div>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
