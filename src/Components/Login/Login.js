@@ -62,7 +62,7 @@ function Login({ setUser }) {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form className={styles.form} onSubmit={onSubmit}>
             <h3 >Log in</h3>
 
             <div className="form-group">
