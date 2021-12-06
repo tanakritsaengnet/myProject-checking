@@ -120,8 +120,14 @@ function App() {
           { title: "วันที่", field: "date", type: "date" },
           { title: "เวลา", field: "time", type: "time" },
           {
-            title: "ละติจูด,ลองจูด",
-            field: "position",
+            field: "photo",
+            title: "Picture",
+            render: (rowData) => (
+              <img
+                src={rowData.photo}
+                style={{ width: 60, height: 60, borderRadius: "50%" }}
+              />
+            ),
           },
         ]}
         data={items.map((item) => {
