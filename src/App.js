@@ -37,9 +37,6 @@ function App() {
             <Route exact path="/Checking">
               <Checking />
             </Route>
-            <Route exact path="/Leave">
-              <Leave />
-            </Route>
             <Route exact path="/EditUser/:id">
               <EditUser />
             </Route>
