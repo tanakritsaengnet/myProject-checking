@@ -75,6 +75,8 @@ function App() {
             }
           });
         });
+
+        newState.sort((a, b) => (a.date - b.date) ? 1 : -1);
         setItems(newState);
       });
     }

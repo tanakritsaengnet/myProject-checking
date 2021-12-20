@@ -21,10 +21,4 @@ export const SidebarData = [
     icon: <FaIcons.FaCalendarCheck />,
     cName: "nav-text",
   },
-  {
-    title: "ประวัติการลางาน",
-    path: "/leave",
-    icon: <FaIcons.FaCalendarTimes />,
-    cName: "nav-text",
-  },
 ];

@@ -61,6 +61,8 @@ function List() {
             <button
               onClick={() => {
                 firebase.database().ref('user/' + userId).remove();
+                firebase.database().ref('leave/' + userId).remove();
+                firebase.database().ref('location').orderByChild('user_id').equalTo(userId).remove();
                 alert('Delete User ID: ' + userId + " from user complete");
                 onClose();
               }}
